@@ -20,18 +20,24 @@ jobs:
       AWS_REGION: eu-west-3
 
     steps:
-      - uses: actions/checkout@v4.1.1
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.1
 
-      - uses: hei-school/aws-credentials-setter@v1.0.3
+
+      - name: Set AWS Credentials
+        uses: hei-school/aws-credentials-setter@v1.0.3
         with:
           secrets: ${{ toJSON(secrets) }}
           region: ${{ env.AWS_REGION }}
 
-      - run: chmod +x gradlew
+      - name: Make Gradlew Executable
+        run: chmod +x gradlew
 
-      - uses: actions/setup-java@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'corretto'
 
-      - run: ./gradlew test
+      - name: Run Gradle Tests
+        run: ./gradlew test
