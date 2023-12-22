@@ -1,0 +1,17 @@
+config:
+  target: 'http://your-api-base-url'  # Replace with your actual API base URL
+
+scenarios:
+  - flow:
+      - get:
+          url: '/ping'
+      - think: 1
+
+
+defaults:
+  headers:
+    User-Agent: 'Artillery/2.7.0'
+
+phases:
+  - duration: 60
+    arrivalRate: 10
